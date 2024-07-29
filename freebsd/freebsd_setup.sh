@@ -1,4 +1,3 @@
-```sh
 #!/bin/sh
 #
 # To download this script directly from freeBSD:
@@ -57,7 +56,7 @@ table <rfc6890> { 0.0.0.0/8 10.0.0.0/8 100.64.0.0/10 127.0.0.0/8 169.254.0.0/16 
 table <bruteforce> persist
 
 
-#options                                                                                                                         
+#options
 set skip on lo0
 
 #normalization
@@ -84,6 +83,7 @@ pass in on \$ext_if proto tcp to port { ssh } keep state (max-src-conn 15, max-s
 pass out on \$ext_if proto { tcp, udp } to port \$services
 pass out on \$ext_if inet proto icmp icmp-type \$icmp_types
 pass in on \$int_if from \$int_if:network to any
+pass out on \$int_if from \$int_if:network to any
 " >> /etc/pf.conf
 
 # Start dnsmasq
@@ -98,4 +98,3 @@ service pf start
 
 # Load PF rules
 pfctl -f /etc/pf.conf
-```
