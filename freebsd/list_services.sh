@@ -1,0 +1,2 @@
+#!/bin/sh
+printf "Services:"; service -e|while read _LINE; do _SERVICE="$(basename "${_LINE}")"; _STATUS="$(service "${_SERVICE}" status 2>/dev/null)"; test -z "${_STATUS}" && continue; if echo "${_STATUS}"|grep -q -e " enabled" -e " running as pid" -e " Running"; then printf " \033[1;32m${_SERVICE}\033[0m"; elif echo "${_STATUS}"|grep -q -e " not running"; then printf " \033[1;31m${_SERVICE}\033[0m"; else printf " ${_SERVICE}"; fi; done; echo ""; unset _LINE _SERVICE _STATUS
