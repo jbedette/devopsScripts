@@ -53,7 +53,7 @@ SSHD_CONFIG_CONTENT='
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-# Note that some of FreeBSD\'s defaults differ from OpenBSD\'s, and
+# Note that some of FreeBSDs defaults differ from OpenBSDs, and
 # FreeBSD has a few additional options.
 
 Port 2222
@@ -93,10 +93,10 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
 #HostbasedAuthentication no
-# Change to yes if you don\'t trust ~/.ssh/known_hosts for
+# Change to yes if you dont trust ~/.ssh/known_hosts for
 # HostbasedAuthentication
 #IgnoreUserKnownHosts no
-# Don\'t read the user\'s ~/.rhosts and ~/.shosts files
+# Dont read the users ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
@@ -117,7 +117,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
-# Set this to \'no\' to disable PAM authentication, account processing,
+# Set this to no to disable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
 # be allowed through the KbdInteractiveAuthentication and
 # PasswordAuthentication.  Depending on your PAM configuration,
@@ -125,7 +125,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 # the setting of "PermitRootLogin prohibit-password".
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
-# and KbdInteractiveAuthentication to \'no\'.
+# and KbdInteractiveAuthentication to no.
 #UsePAM yes
 
 #AllowAgentForwarding yes
