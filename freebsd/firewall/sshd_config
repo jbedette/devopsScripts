@@ -1,44 +1,3 @@
-#!/bin/sh
-
-# Define the external interface and the internal target
-EXT_IF="hn1" # Replace with your actual external interface name
-TARGET="192.168.33.136"
-
-# Check if the script is run as root
-if [ "$(id -u)" -ne 0 ]; then
-    echo "This script must be run as root"
-    exit 1
-fi
-
-# Append the configuration to /etc/pf.conf
-cat <<EOL >> /etc/pf.conf
-
-# Define the external interface and the internal target
-ext_if = "$EXT_IF" # Replace with your actual external interface name
-target = "$TARGET"
-
-# Normalize and scrub incoming packets
-scrub in all
-
-# Define NAT rules for forwarding SSH traffic to the target
-nat on \$ext_if from \$target to any -> (\$ext_if)
-
-# Redirection rule to forward SSH traffic
-rdr pass on \$ext_if proto tcp from any to (\$ext_if) port 22 -> \$target port 22
-
-# Default deny rule for inbound traffic (optional for security)
-block in all
-pass out all
-
-# Allow SSH traffic to be forwarded
-pass in on \$ext_if proto tcp from any to \$target port 22
-EOL
-
-echo "Configuration successfully appended to /etc/pf.conf"
-
-
-# New SSHD config content
-SSHD_CONFIG_CONTENT='
 #	$OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
 
 # This is the sshd server system-wide configuration file.  See
@@ -51,7 +10,7 @@ SSHD_CONFIG_CONTENT='
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-# Note that some of FreeBSD\'s defaults differ from OpenBSD\'s, and
+# Note that some of FreeBSD's defaults differ from OpenBSD's, and
 # FreeBSD has a few additional options.
 
 #Port 2222
@@ -91,10 +50,10 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
 #HostbasedAuthentication no
-# Change to yes if you don\'t trust ~/.ssh/known_hosts for
+# Change to yes if you don't trust ~/.ssh/known_hosts for
 # HostbasedAuthentication
 #IgnoreUserKnownHosts no
-# Don\'t read the user\'s ~/.rhosts and ~/.shosts files
+# Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
@@ -115,7 +74,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
-# Set this to \'no\' to disable PAM authentication, account processing,
+# Set this to 'no' to disable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
 # be allowed through the KbdInteractiveAuthentication and
 # PasswordAuthentication.  Depending on your PAM configuration,
@@ -123,7 +82,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 # the setting of "PermitRootLogin prohibit-password".
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
-# and KbdInteractiveAuthentication to \'no\'.
+# and KbdInteractiveAuthentication to 'no'.
 #UsePAM yes
 
 #AllowAgentForwarding yes
@@ -160,26 +119,3 @@ Subsystem	sftp	/usr/libexec/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
-'
-
-# Create a temporary file with the new sshd_config content
-echo "$SSHD_CONFIG_CONTENT" > /tmp/sshd_config_new
-
-# Set appropriate permissions
-chmod 644 /tmp/sshd_config_new
-
-# Replace the existing /etc/ssh/sshd_config with the new file
-mv /tmp/sshd_config_new /etc/ssh/sshd_config
-
-# Restart the SSH service to apply the changes
-service sshd restart
-
-echo "SSHD configuration updated and service restarted."
- 
-
-
-# Reload the PF rules
-pfctl -f /etc/pf.conf
-pfctl -e
-
-echo "PF rules reloaded and enabled"

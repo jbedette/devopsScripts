@@ -32,10 +32,12 @@ pass out all
 
 # Allow SSH traffic to be forwarded
 pass in on \$ext_if proto tcp from any to \$target port 22
+
+# Allow management SSH traffic on new port
+pass in on \$ext_if proto tcp from any to (\$ext_if) port 2222
 EOL
 
 echo "Configuration successfully appended to /etc/pf.conf"
-
 
 # New SSHD config content
 SSHD_CONFIG_CONTENT='
@@ -54,7 +56,7 @@ SSHD_CONFIG_CONTENT='
 # Note that some of FreeBSD\'s defaults differ from OpenBSD\'s, and
 # FreeBSD has a few additional options.
 
-#Port 2222
+Port 2222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -175,11 +177,13 @@ mv /tmp/sshd_config_new /etc/ssh/sshd_config
 service sshd restart
 
 echo "SSHD configuration updated and service restarted."
- 
-
 
 # Reload the PF rules
 pfctl -f /etc/pf.conf
 pfctl -e
 
 echo "PF rules reloaded and enabled"
+
+# install snort
+pkg install snort
+pkg install suricata
