@@ -12,6 +12,12 @@ check_ssh_service() {
         echo "SSH service is running on port $NEW_SSH_PORT."
     else
         echo "SSH service is NOT running on port $NEW_SSH_PORT."
+        OTHER_PORT=$(netstat -an | grep LISTEN | grep sshd | awk '{print $4}' | sed 's/.*://')
+        if [ -n "$OTHER_PORT" ]; then
+            echo "SSH service is running on port $OTHER_PORT instead."
+        else
+            echo "SSH service is not running."
+        fi
         return 1
     fi
 }
