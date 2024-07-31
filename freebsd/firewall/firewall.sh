@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Define the external interface and the internal target
-EXT_IF="em0" # Replace with your actual external interface name
+EXT_IF="hn1" # Replace with your actual external interface name
 TARGET="192.168.33.136"
 
 # Check if the script is run as root
