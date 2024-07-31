@@ -43,7 +43,7 @@ echo "Configuration successfully appended to /etc/pf.conf"
 
 # New SSHD config content
 SSHD_CONFIG_CONTENT='
-#	$OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
+# $OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
