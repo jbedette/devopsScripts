@@ -97,7 +97,7 @@ SSHD_CONFIG_CONTENT='
 # Note that some of FreeBSDs defaults differ from OpenBSDs, and
 # FreeBSD has a few additional options.
 
-#Port 22222
+Port 22222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -232,6 +232,7 @@ check_ssh_service() {
     echo "testing ssh service"
     if grep ^Port /etc/ssh/sshd_config; then 
         grep ^Port /etc/ssh/sshd_config
+        netstat -an | grep LISTEN | grep 22222
     else 
         echo "ssh error"
         service sshd status;
