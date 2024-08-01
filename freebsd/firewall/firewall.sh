@@ -14,8 +14,10 @@ fi
 
 PF_CONFIG_CONTENT='
 # Define the external interface and the internal target
-ext_if = "$EXT_IF" # Replace with your actual external interface name
-target = "$TARGET"
+ext_if = "hn0"
+int_if = "hn1"
+
+target = "192.168.33.136"
 
 # Normalize and scrub incoming packets
 scrub in all
@@ -190,13 +192,16 @@ echo "SSHD configuration updated and service restarted."
 pfctl -f /etc/pf.conf
 pfctl -e
 
-echo "PF rules reloaded and enabled"
+echo "PF rules reloaded and enabled\n\n"
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
     echo "testing ssh service"
     if grep ^Port /etc/ssh/sshd_config; then 
+        grep ^Port /etc/ssh/sshd_config; then 
         return 1
+    else 
+        echo "ssh not running"
     fi
     # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
     #     echo "SSH service is running on port $NEW_SSH_PORT."
