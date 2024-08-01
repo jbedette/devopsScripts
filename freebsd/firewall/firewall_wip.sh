@@ -194,19 +194,22 @@ echo "PF rules reloaded and enabled"
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
-    echo "Checking if SSH service is running on port $NEW_SSH_PORT..."
-    if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
-        echo "SSH service is running on port $NEW_SSH_PORT."
-    else
-        echo "SSH service is NOT running on port $NEW_SSH_PORT."
-        OTHER_PORT=$(netstat -an | grep LISTEN | grep sshd | awk '{print $4}' | sed 's/.*://')
-        if [ -n "$OTHER_PORT" ]; then
-            echo "SSH service is running on port $OTHER_PORT instead."
-        else
-            echo "SSH service is not running."
-        fi
-        return 1
-    fi
+    echo "testing ssh service"
+    grep ^Port /etc/ssh/sshd_config
+    Port 222222
+    netstat -an | grep LISTEN | grep sshd
+    # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
+    #     echo "SSH service is running on port $NEW_SSH_PORT."
+    # else
+    #     echo "SSH service is NOT running on port $NEW_SSH_PORT."
+    #     OTHER_PORT=$(netstat -an | grep LISTEN | grep sshd | awk '{print $4}' | sed 's/.*://')
+    #     if [ -n "$OTHER_PORT" ]; then
+    #         echo "SSH service is running on port $OTHER_PORT instead."
+    #     else
+    #         echo "SSH service is not running."
+    #     fi
+    #     return 1
+    # fi
 }
 
 # Function to check if PF rules are applied

@@ -7,8 +7,10 @@ NEW_SSH_PORT=222222
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
-    grep ^Port /etc/ssh/sshd_config;
+    echo "testing ssh service"
+    grep ^Port /etc/ssh/sshd_config
     Port 222222
+    netstat -an | grep LISTEN | grep sshd
     # echo "Checking if SSH service is running on port $NEW_SSH_PORT..."
     # if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
     #     echo "SSH service is running on port $NEW_SSH_PORT."
