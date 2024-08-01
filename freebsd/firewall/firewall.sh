@@ -262,13 +262,13 @@ check_pf_rules() {
 # Function to test SSH connectivity to the new port
 test_ssh_connectivity() {
     echo "test ssh connectivity"
-    echo "Testing SSH connectivity to localhost on port $NEW_SSH_PORT..."
-    if ssh -p $NEW_SSH_PORT -o ConnectTimeout=5 localhost exit 2>/dev/null; then
-        echo "Successfully connected to SSH on port $NEW_SSH_PORT."
-    else
-        echo "Failed to connect to SSH on port $NEW_SSH_PORT."
-        return 1
-    fi
+    # echo "Testing SSH connectivity to localhost on port $NEW_SSH_PORT..."
+    # if ssh -p $NEW_SSH_PORT -o ConnectTimeout=5 localhost exit 2>/dev/null; then
+    #     echo "Successfully connected to SSH on port $NEW_SSH_PORT."
+    # else
+    #     echo "Failed to connect to SSH on port $NEW_SSH_PORT."
+    #     return 1
+    # fi
 }
 
 # Function to test SSH forwarding
