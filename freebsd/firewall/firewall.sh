@@ -3,7 +3,7 @@
 # Define the external interface and the internal target
 EXT_IF="hn0"
 INT_IF="hn1"
-TARGET="192.168.33.136"
+TARGET="192.168.33.163"
 NEW_SSH_PORT=22222
 
 # Check if the script is run as root
