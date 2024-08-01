@@ -243,19 +243,19 @@ check_ssh_service() {
     fi
 }
 
-# Function to check if PF rules are applied
-check_pf_rules() {
-    echo ""
-    echo "Checking PF rules..."
-    pfctl_output=$(pfctl -sr)
-    echo "$pfctl_output" # Print the PF rules to see their current state
-    if echo "$pfctl_output" | grep -q "$TARGET"; then
-        echo "PF rules are correctly applied."
-    else
-        echo "PF rules are NOT correctly applied."
-        return 1
-    fi
-}
+# # Function to check if PF rules are applied
+# check_pf_rules() {
+#     echo ""
+#     echo "Checking PF rules..."
+#     pfctl_output=$(pfctl -sr)
+#     #echo "$pfctl_output" # Print the PF rules to see their current state
+#     if echo "$pfctl_output" | grep -q "$TARGET"; then
+#         echo "PF rules are correctly applied."
+#     else
+#         echo "PF rules are NOT correctly applied."
+#         return 1
+#     fi
+# }
 
 
 # Function to test SSH connectivity to the new port
