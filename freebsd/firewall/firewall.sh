@@ -22,17 +22,17 @@ target=192.168.33.136
 scrub in all
 
 # Define NAT rules for forwarding SSH traffic to the target
-nat on \$ext_if from \$target to any -> (\$ext_if)
+nat on \$ext_if from 192.168.33.136 to any -> (\$ext_if)
 
 # Redirection rule to forward SSH traffic
-rdr pass on \$ext_if proto tcp from any to (\$ext_if) port 22 -> \$target port 22
+rdr pass on \$ext_if proto tcp from any to (\$ext_if) port 22 -> 192.168.33.136 port 22
 
 # Default deny rule for inbound traffic (optional for security)
 block in all
 pass out all
 
 # Allow SSH traffic to be forwarded
-pass in on \$ext_if proto tcp from any to \$target port 22
+pass in on \$ext_if proto tcp from any to 192.168.33.136 port 22
 
 # Allow management SSH traffic on new port
 pass in on \$ext_if proto tcp from any to (\$ext_if) port 22222'
