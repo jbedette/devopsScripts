@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Define the external interface and the internal target
-EXT_IF="hn1" # Replace with your actual external interface name
+EXT_IF="hn1"
 TARGET="192.168.33.136"
+NEW_SSH_PORT=22222
 
 # Check if the script is run as root
 if [ "$(id -u)" -ne 0 ]; then
@@ -10,38 +11,45 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-# Append the configuration to /etc/pf.conf
-cat <<EOL >> /etc/pf.conf
 
+PF_CONFIG_CONTENT='
 # Define the external interface and the internal target
-ext_if = "$EXT_IF" # Replace with your actual external interface name
-target = "$TARGET"
+ext_if="hn0"
+int_if="hn1"
 
 # Normalize and scrub incoming packets
 scrub in all
 
 # Define NAT rules for forwarding SSH traffic to the target
-nat on \$ext_if from \$target to any -> (\$ext_if)
+nat on \$ext_if from 192.168.33.136 to any -> (\$ext_if)
 
 # Redirection rule to forward SSH traffic
-rdr pass on \$ext_if proto tcp from any to (\$ext_if) port 22 -> \$target port 22
+rdr pass on \$ext_if proto tcp from any to (\$ext_if) port 22 -> 192.168.33.136 port 22
 
 # Default deny rule for inbound traffic (optional for security)
 block in all
 pass out all
 
 # Allow SSH traffic to be forwarded
-pass in on \$ext_if proto tcp from any to \$target port 22
+pass in on \$ext_if proto tcp from any to 192.168.33.136 port 22
 
 # Allow management SSH traffic on new port
-pass in on \$ext_if proto tcp from any to (\$ext_if) port 2222
-EOL
+pass in on \$ext_if proto tcp from any to (\$ext_if) port 22222'
 
-echo "Configuration successfully appended to /etc/pf.conf"
+# Create a temporary file with the new pf.conf content
+echo "$PF_CONFIG_CONTENT" > /tmp/pf_new.conf
+
+# Set appropriate permissions
+chmod 644 /tmp/pf_new.conf
+
+# Replace the existing /etc/pf.conf with the new file
+mv /tmp/pf_new.conf /etc/pf.conf
+
+echo "/etc/pf.conf updated"
 
 # New SSHD config content
 SSHD_CONFIG_CONTENT='
-#	$OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
+# $OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -56,7 +64,7 @@ SSHD_CONFIG_CONTENT='
 # Note that some of FreeBSDs defaults differ from OpenBSDs, and
 # FreeBSD has a few additional options.
 
-Port 2222
+#Port 22222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -183,7 +191,73 @@ pfctl -f /etc/pf.conf
 pfctl -e
 
 echo "PF rules reloaded and enabled"
+echo ""
+echo ""
 
-# install snort
-pkg install snort
-pkg install suricata
+# Function to check if SSH service is running on the new port
+check_ssh_service() {
+    echo "testing ssh service"
+    if grep ^Port /etc/ssh/sshd_config; then 
+        grep ^Port /etc/ssh/sshd_config
+    else 
+        echo "ssh error"
+        service sshd status;
+        grep ^Port /etc/ssh/sshd_config
+        # echo "ssh not running"
+        return 1
+    fi
+    # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
+    #     echo "SSH service is running on port $NEW_SSH_PORT."
+    # else
+    #     echo "SSH service is NOT running on port $NEW_SSH_PORT."
+    #     OTHER_PORT=$(netstat -an | grep LISTEN | grep sshd | awk '{print $4}' | sed 's/.*://')
+    #     if [ -n "$OTHER_PORT" ]; then
+    #         echo "SSH service is running on port $OTHER_PORT instead."
+    #     else
+    #         echo "SSH service is not running."
+    #     fi
+    #     return 1
+    # fi
+}
+
+# Function to check if PF rules are applied
+check_pf_rules() {
+    echo "Checking PF rules..."
+    if pfctl -sr | grep -q "$TARGET"; then
+        echo "PF rules are correctly applied."
+    else
+        echo "PF rules are NOT correctly applied."
+        return 1
+    fi
+}
+
+# Function to test SSH connectivity to the new port
+test_ssh_connectivity() {
+    echo "Testing SSH connectivity to localhost on port $NEW_SSH_PORT..."
+    if ssh -p $NEW_SSH_PORT -o ConnectTimeout=5 localhost exit 2>/dev/null; then
+        echo "Successfully connected to SSH on port $NEW_SSH_PORT."
+    else
+        echo "Failed to connect to SSH on port $NEW_SSH_PORT."
+        return 1
+    fi
+}
+
+# Function to test SSH forwarding
+test_ssh_forwarding() {
+    echo "Testing SSH forwarding to target machine $TARGET..."
+    if ssh -J localhost:$NEW_SSH_PORT -o ConnectTimeout=5 jbedette@$TARGET exit 2>/dev/null; then
+        echo "Successfully forwarded SSH to $TARGET."
+    else
+        echo "Failed to forward SSH to $TARGET."
+        return 1
+    fi
+}
+
+# Run the tests
+check_ssh_service && check_pf_rules && test_ssh_connectivity && test_ssh_forwarding
+
+if [ $? -eq 0 ]; then
+    echo "All tests passed successfully."
+else
+    echo "Some tests failed. Please check the details above."
+fi
