@@ -41,6 +41,7 @@ block in quick on egress from <rfc6890>
 block return out quick on egress to <rfc6890>
 block log all
 
+#filtering rules
 # Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
 rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
 
