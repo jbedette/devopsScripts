@@ -64,7 +64,7 @@ SSHD_CONFIG_CONTENT='
 # Note that some of FreeBSDs defaults differ from OpenBSDs, and
 # FreeBSD has a few additional options.
 
-Port 222222
+#Port 222222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
