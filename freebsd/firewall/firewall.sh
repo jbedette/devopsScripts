@@ -49,14 +49,15 @@ pass out quick on $int_if inet proto udp from $int_if:0 port = bootps to any por
 pass in quick on $ext_if inet proto udp from any port = bootps to $ext_if:0 port = bootpc keep state label "allow access to DHCP client"
 pass out quick on $ext_if inet proto udp from $ext_if:0 port = bootpc to any port = bootps keep state label "allow access to DHCP client"
 
+# Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
+rdr pass on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
+
 pass in on $ext_if proto tcp to port { ssh } keep state (max-src-conn 15, max-src-conn-rate 3/1, overload <bruteforce> flush global)
 pass out on $ext_if proto { tcp, udp } to port $services
 pass out on $ext_if inet proto icmp icmp-type $icmp_types
 pass in on $int_if from $int_if:network to any
 pass out on $int_if from $int_if:network to any
 
-# Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
-rdr pass on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
 
 # SSH server on firewall management port
 pass in on $ext_if proto tcp to port $ssh_rdr keep state (max-src-conn 15, max-src-conn-rate 3/1, overload <bruteforce> flush global)
