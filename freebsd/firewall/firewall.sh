@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # Define the external interface and the internal target
-EXT_IF="hn1"
+EXT_IF="hn0"
+INT_IF="hn1"
 TARGET="192.168.33.136"
 NEW_SSH_PORT=22222
 
@@ -20,6 +21,7 @@ icmp_types="{ echoreq, unreach }"
 services="{ ssh, domain, http, ntp, https }"
 server="192.168.33.63"
 ssh_rdr="22222"
+target="192.168.33.163"
 table <rfc6890> { 0.0.0.0/8 10.0.0.0/8 100.64.0.0/10 127.0.0.0/8 169.254.0.0/16 \
                   172.16.0.0/12 192.0.0.0/24 192.0.0.0/29 192.0.2.0/24 192.88.99.0/24 \
                   192.168.0.0/16 198.18.0.0/15 198.51.100.0/24 203.0.113.0/24 \
@@ -37,7 +39,7 @@ nat on $ext_if from $int_if:network to any -> ($ext_if)
 
 #Redirection rules
 # Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
-rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
+rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $target port 22
 
 #blocking rules
 antispoof quick for $ext_if
