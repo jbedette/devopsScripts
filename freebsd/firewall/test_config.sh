@@ -3,7 +3,7 @@
 # Define the external interface and the internal target
 EXT_IF="hn1"
 TARGET="192.168.33.136"
-NEW_SSH_PORT=2222
+NEW_SSH_PORT=222222
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
