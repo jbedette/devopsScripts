@@ -45,7 +45,7 @@ echo "$PF_CONFIG_CONTENT" > /tmp/pf_new.conf
 chmod 644 /tmp/pf_new.conf
 
 # Replace the existing /etc/pf.conf with the new file
-mv /tmp/pf_new.cof /etc/pf.conf
+mv /tmp/pf_new.conf /etc/pf.conf
 
 echo "/etc/pf.conf updated"
 
@@ -201,10 +201,10 @@ check_ssh_service() {
     echo "testing ssh service"
     if grep ^Port /etc/ssh/sshd_config; then 
         grep ^Port /etc/ssh/sshd_config
-        return 1
     else 
+        service sshd status
         echo "ssh not running"
-        return 0
+        return 1
     fi
     # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
     #     echo "SSH service is running on port $NEW_SSH_PORT."
