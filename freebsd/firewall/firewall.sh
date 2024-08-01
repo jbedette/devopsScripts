@@ -192,16 +192,19 @@ echo "SSHD configuration updated and service restarted."
 pfctl -f /etc/pf.conf
 pfctl -e
 
-echo "PF rules reloaded and enabled\n\n"
+echo "PF rules reloaded and enabled"
+echo ""
+echo ""
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
     echo "testing ssh service"
     if grep ^Port /etc/ssh/sshd_config; then 
-        grep ^Port /etc/ssh/sshd_config; then 
+        grep ^Port /etc/ssh/sshd_config
         return 1
     else 
         echo "ssh not running"
+        return 0
     fi
     # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
     #     echo "SSH service is running on port $NEW_SSH_PORT."
