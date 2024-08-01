@@ -42,7 +42,7 @@ block return out quick on egress to <rfc6890>
 block log all
 
 # Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
-rdr pass on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
+rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
 
 #pass rules
 pass in quick on $int_if inet proto udp from any port = bootpc to 255.255.255.255 port = bootps keep state label "allow access to DHCP server"
