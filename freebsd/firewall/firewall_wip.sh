@@ -34,7 +34,7 @@ pass out all
 pass in on \$ext_if proto tcp from any to \$target port 22
 
 # Allow management SSH traffic on new port
-pass in on \$ext_if proto tcp from any to (\$ext_if) port 2222'
+pass in on \$ext_if proto tcp from any to (\$ext_if) port 222222'
 
 # Create a temporary file with the new pf.conf content
 echo "$PF_CONFIG_CONTENT" > /tmp/pf_new.conf
@@ -64,7 +64,7 @@ SSHD_CONFIG_CONTENT='
 # Note that some of FreeBSDs defaults differ from OpenBSDs, and
 # FreeBSD has a few additional options.
 
-Port 2222
+Port 222222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
