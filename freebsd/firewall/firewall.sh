@@ -229,6 +229,7 @@ echo ""
 
 # Function to check if SSH service is running on the new port
 check_ssh_service() {
+    echo ""
     echo "testing ssh service"
     if grep ^Port /etc/ssh/sshd_config; then 
         grep ^Port /etc/ssh/sshd_config
@@ -240,24 +241,15 @@ check_ssh_service() {
         # echo "ssh not running"
         return 1
     fi
-    # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
-    #     echo "SSH service is running on port $NEW_SSH_PORT."
-    # else
-    #     echo "SSH service is NOT running on port $NEW_SSH_PORT."
-    #     OTHER_PORT=$(netstat -an | grep LISTEN | grep sshd | awk '{print $4}' | sed 's/.*://')
-    #     if [ -n "$OTHER_PORT" ]; then
-    #         echo "SSH service is running on port $OTHER_PORT instead."
-    #     else
-    #         echo "SSH service is not running."
-    #     fi
-    #     return 1
-    # fi
 }
 
 # Function to check if PF rules are applied
 check_pf_rules() {
+    echo ""
     echo "Checking PF rules..."
-    if pfctl -sr | grep -q "$TARGET"; then
+    pfctl_output=$(pfctl -sr)
+    echo "$pfctl_output" # Print the PF rules to see their current state
+    if echo "$pfctl_output" | grep -q "$TARGET"; then
         echo "PF rules are correctly applied."
     else
         echo "PF rules are NOT correctly applied."
@@ -265,8 +257,10 @@ check_pf_rules() {
     fi
 }
 
+
 # Function to test SSH connectivity to the new port
 test_ssh_connectivity() {
+    echo ""
     echo "Testing SSH connectivity to localhost on port $NEW_SSH_PORT..."
     if ssh -p $NEW_SSH_PORT -o ConnectTimeout=5 localhost exit 2>/dev/null; then
         echo "Successfully connected to SSH on port $NEW_SSH_PORT."
@@ -278,6 +272,7 @@ test_ssh_connectivity() {
 
 # Function to test SSH forwarding
 test_ssh_forwarding() {
+    echo ""
     echo "Testing SSH forwarding to target machine $TARGET..."
     if ssh -J localhost:$NEW_SSH_PORT -o ConnectTimeout=5 jbedette@$TARGET exit 2>/dev/null; then
         echo "Successfully forwarded SSH to $TARGET."
