@@ -35,15 +35,16 @@ scrub in all fragment reassemble max-mss 1441
 #NAT rules
 nat on $ext_if from $int_if:network to any -> ($ext_if)
 
+#Redirection rules
+# Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
+rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
+
 #blocking rules
 antispoof quick for $ext_if
 block in quick on egress from <rfc6890>
 block return out quick on egress to <rfc6890>
 block log all
 
-#filtering rules
-# Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
-rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
 
 #pass rules
 pass in quick on $int_if inet proto udp from any port = bootpc to 255.255.255.255 port = bootps keep state label "allow access to DHCP server"
