@@ -16,7 +16,7 @@ PF_CONFIG_CONTENT='
 # Define the external interface and the internal target
 ext_if="hn0"
 int_if="hn1"
-target="192.168.33.136"
+target=192.168.33.136
 
 # Normalize and scrub incoming packets
 scrub in all
