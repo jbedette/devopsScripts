@@ -201,8 +201,10 @@ check_ssh_service() {
     if grep ^Port /etc/ssh/sshd_config; then 
         grep ^Port /etc/ssh/sshd_config
     else 
+        echo "ssh error"
         service sshd status
-        echo "ssh not running"
+        grep ^Port /etc/ssh/sshd_config
+        # echo "ssh not running"
         return 1
     fi
     # echo "Checking if SSH service is running on port $NEW_SSH_PORT..." if netstat -an | grep LISTEN | grep -q ":$NEW_SSH_PORT"; then
