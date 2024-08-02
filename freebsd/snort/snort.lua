@@ -192,7 +192,7 @@ ips =
 
     variables = default_variables,
     rules = [[
-        ./rules/smbghost.rules
+       include ./rules/smbghost.rules
     ]]
 }
 
