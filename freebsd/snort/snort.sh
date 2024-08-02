@@ -35,7 +35,7 @@ echo ""
 echo "SMB GHOST rule at $SMBGHOST_RULES"
 cat $SMBGHOST_RULES
 echo ""
-mv ./snort.lua /usr/local/etc/snort/snort.lua
+mv ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 snort -c /etc/snort/snort.lua --reload
 snort -c /usr/local/etc/snort/snort.lua -T
 echo ""
