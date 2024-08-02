@@ -35,3 +35,4 @@ echo ""
 echo "SMB GHOST rule at $SMBGHOST_RULES"
 cat $SMBGHOST_RULES
 echo ""
+snort -c /usr/local/etc/snort/snort.lua -T

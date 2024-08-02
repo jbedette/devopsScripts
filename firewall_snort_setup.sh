@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pkg install tcpreplay
+pkg install -y tcpreplay
 chmod +x ./freebsd/firewall/firewall.sh
 chmod +x ./freebsd/snort/snort.sh
 ./freebsd/firewall/firewall.sh
