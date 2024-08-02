@@ -46,8 +46,6 @@ SMBGHOST_DROP='drop tcp any any -> any 445
     msg:"SMBGhost attempt detected - dropping"; 
     flow:to_server,established; 
     content:"|FC53 4AAF|";
-    offset:4;
-    depth:4;
     byte_test:1,!&,0x01,0;
     byte_test:1,&,0x08,4;
     metadata:service smb; 

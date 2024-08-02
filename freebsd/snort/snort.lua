@@ -28,7 +28,6 @@ HOME_NET = 'any'
 EXTERNAL_NET = 'any'
 
 include 'snort_defaults.lua'
-include 'rules/smbghost.rules'
 
 ---------------------------------------------------------------------------
 -- 2. configure inspection
