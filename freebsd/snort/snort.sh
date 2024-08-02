@@ -61,4 +61,7 @@ snort -c /etc/snort/snort.lua --reload
 snort -c /usr/local/etc/snort/snort.lua -T
 echo ""
 snort -c /usr/local/etc/snort/snort.lua -T | grep smbghost
-cd /usr/local/etc/snort
+echo '#!/bin/sh snort -c /usr/local/etc/snort/snort.lua -T' > snort_check.sh
+chmod +x snort_check.sh
+mv snort_check.sh /usr/local/etc/snort/
+cd /usr/local/etc/snort/
