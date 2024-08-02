@@ -40,3 +40,4 @@ snort -c /etc/snort/snort.lua --reload
 snort -c /usr/local/etc/snort/snort.lua -T
 echo ""
 snort -c /usr/local/etc/snort/snort.lua -T | grep smbghost
+cd $SMBGHOST_RULES
