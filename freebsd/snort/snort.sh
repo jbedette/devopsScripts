@@ -2,7 +2,7 @@
 
 # Install Snort
 echo "Installing Snort..."
-pkg install -y snort
+pkg install -y snort3
 
 # Check if the installation was successful
 if [ $? -eq 0 ]; then
