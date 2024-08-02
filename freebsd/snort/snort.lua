@@ -28,7 +28,7 @@ HOME_NET = 'any'
 EXTERNAL_NET = 'any'
 
 include 'snort_defaults.lua'
-include 'rules/smbghost.rules'
+-- include 'rules/smbghost.rules'
 
 ---------------------------------------------------------------------------
 -- 2. configure inspection
@@ -191,6 +191,9 @@ ips =
     -- (see also related path vars at the top of snort_defaults.lua)
 
     variables = default_variables
+    rules = [[
+        ./rules/smbghost.rules
+    ]]
 }
 
 -- use these to configure additional rule actions
