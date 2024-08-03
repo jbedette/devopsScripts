@@ -79,13 +79,15 @@ cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
 
 
 
-snort -c /usr/local/etc/snort/snort.lua -T
+# snort -c /usr/local/etc/snort/snort.lua -T
 echo ""
 snort -c /usr/local/etc/snort/snort.lua -T | grep smbghost
+
 echo '#!/bin/sh 
 snort -c /usr/local/etc/snort/snort.lua -T' > snort_check.sh
 chmod +x snort_check.sh
 cp snort_check.sh /usr/local/etc/snort/
-cp snort_check.sh ~/devopsScripts
+# cp snort_check.sh ~/devopsScripts
+
 service snort3 start
 
