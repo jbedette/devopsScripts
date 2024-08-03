@@ -86,8 +86,10 @@ snort -c /usr/local/etc/snort/snort.lua -T' > snort_check.sh
 chmod +x snort_check.sh
 cp snort_check.sh /usr/local/etc/snort/
 
+echo "snort3 start"
 service snort3 start
+echo "snort3 status"
 service snort3 status
 
-sudo tail /var/log/messages
-sudo tail /var/log/snort/snort.log
+tail /var/log/messages
+tail /var/log/snort/snort.log
