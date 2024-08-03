@@ -270,14 +270,14 @@ alert_fast = {
 
 -- additional logs
 --packet_capture = { }
--- file_log = {
---     log_dir = '/var/log/snort',
---     fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
---     file = 'snort.log',
--- }
+file_log = {
+    log_dir = '/var/log/snort',
+    fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+    file = 'snort.log',
+}
 
 -- loggers = { file_log }
-loggers = { alert_fast }
+loggers = { file_log, alert_fast }
 
 ---------------------------------------------------------------------------
 -- 8. configure tweaks

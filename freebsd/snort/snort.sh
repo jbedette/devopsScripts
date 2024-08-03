@@ -58,7 +58,7 @@ SMBGHOST_DROP='drop tcp any any -> any 445
     sid:1000002;
     rev:1;
 )'
-SSH_ALERT='alert tcp any any -> $HOME_NET 22 (msg:"SSH connection attempt"; sid:1000003; rev:1;)'
+SSH_ALERT='alert tcp any any -> $HOME_NET 22222 (msg:"SSH connection attempt"; sid:1000003; rev:1;)'
 
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
@@ -95,4 +95,4 @@ echo "snort3 status"
 service snort3 status
 
 tail /var/log/messages
-tail /var/log/snort/snort.log
+#tail /var/log/snort/snort.log
