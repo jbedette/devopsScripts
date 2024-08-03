@@ -3,6 +3,7 @@
 # Install Snort
 echo "Installing Snort3..."
 pkg install -y snort3
+pkg install -y nmap
 
 # Check if the installation was successful
 if [ $? -eq 0 ]; then

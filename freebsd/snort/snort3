@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# PROVIDE: snort3
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable snort3:
+#
+# snort_enable="YES"
+#
+
+. /etc/rc.subr
+
+name="snort3"
+rcvar=snort_enable
+
+load_rc_config $name
+
+: ${snort_enable:="NO"}
+: ${snort_interface:="em0"}
+: ${snort_conf:="/usr/local/etc/snort/snort.lua"}
+
+command="/usr/local/bin/snort"
+command_args="-c ${snort_conf} -i ${snort_interface} -D"
+
+pidfile="/var/run/${name}.pid"
+
+start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
+stop_cmd="kill \$(cat ${pidfile})"
+
+
+run_rc_command "$1"
