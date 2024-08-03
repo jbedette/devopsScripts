@@ -16,6 +16,8 @@ fi
 # Enable Snort to start on boot
 echo "Enabling Snort to start on boot..."
 sysrc snort_enable="YES"
+sudo sysrc snort_interface="hn0"
+sudo sysrc snort_conf="/usr/local/etc/snort/snort.lua"
 
 # move snort service to correct place
 chmod +x ~/devopsScripts/freebsd/snort/snort3
@@ -85,4 +87,7 @@ chmod +x snort_check.sh
 cp snort_check.sh /usr/local/etc/snort/
 
 service snort3 start
+service snort3 status
 
+sudo tail /var/log/messages
+sudo tail /var/log/snort/snort.log
