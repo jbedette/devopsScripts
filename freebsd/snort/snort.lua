@@ -257,6 +257,7 @@ alert_fast = {
     file = true,
     limit = 100,
     fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+    log_dir = '/var/log/snort'
 }
 --alert_full = { }
 --alert_sfsocket = { }
