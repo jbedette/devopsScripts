@@ -25,8 +25,7 @@ command_args="-c ${snort_conf} -i ${snort_interface} -D"
 
 pidfile="/var/run/${name}.pid"
 
-start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
-stop_cmd="kill \$(cat ${pidfile})"
-
+start_cmd="${command} ${command_args} > /var/log/snort/snort_service.log 2>&1 & echo \\$! > ${pidfile}"
+stop_cmd="kill \\$(cat ${pidfile})"
 
 run_rc_command "$1"

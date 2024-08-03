@@ -86,7 +86,7 @@ chmod -R 755 /var/log/snort
 # echo ""
 
 echo '#!/bin/sh 
-snort -c /usr/local/etc/snort/snort.lua -T' > snort_check.sh
+snort -c /usr/local/etc/snort/snort.lua -i hn0 -T' > snort_check.sh
 chmod +x snort_check.sh
 cp snort_check.sh /usr/local/etc/snort/
 

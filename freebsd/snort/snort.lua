@@ -183,7 +183,7 @@ classifications = default_classifications
 ips =
 {
     -- use this to enable decoder and inspector alerts
-    --enable_builtin_rules = true,
+    enable_builtin_rules = true,
 
     -- use include for rules files; be sure to set your path
     -- note that rules files can include other rules files
@@ -253,12 +253,12 @@ rate_filter =
 -- you can enable with defaults from the command line with -A <alert_type>
 -- uncomment below to set non-default configs
 --alert_csv = { }
-alert_fast = { 
-    file = true,
-    limit = 100,
-    -- fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
-    -- log_dir = '/var/log/snort'
-}
+-- alert_fast = { 
+--     file = true,
+--     limit = 100,
+--     -- fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+--     -- log_dir = '/var/log/snort'
+-- }
 --alert_full = { }
 --alert_sfsocket = { }
 --alert_syslog = { }
@@ -285,7 +285,7 @@ alert_fast = {
 
 -- loggers = { file_log }
 -- loggers = { file_log, alert_fast }
-loggers = { alert_fast }
+-- loggers = { alert_fast }
 
 ---------------------------------------------------------------------------
 -- 8. configure tweaks
