@@ -17,7 +17,7 @@ rcvar=snort_enable
 load_rc_config $name
 
 : ${snort_enable:="NO"}
-: ${snort_interface:="em0"}
+: ${snort_interface:="hn0"}
 : ${snort_conf:="/usr/local/etc/snort/snort.lua"}
 
 command="/usr/local/bin/snort"
