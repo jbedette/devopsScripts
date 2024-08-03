@@ -66,6 +66,9 @@ echo ""
 # update snort.lua with new file pointing to my rules
 cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
+mkdir -p /var/log/snort
+chown -R snort:snort /var/log/snort
+chmod -R 755 /var/log/snort
 
 
 
