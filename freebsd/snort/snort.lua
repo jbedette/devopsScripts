@@ -256,6 +256,7 @@ rate_filter =
 alert_fast = { 
     file = true,
     limit = 100,
+    fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
 }
 --alert_full = { }
 --alert_sfsocket = { }
@@ -266,7 +267,12 @@ alert_fast = {
 -- you can enable with defaults from the command line with -L <log_type>
 --log_codecs = { }
 --log_hext = { }
---log_pcap = { }
+log_pcap = {
+    limit = 1000,
+    file = true,
+    log_dir = '/var/log/snort',
+}
+
 
 -- additional logs
 --packet_capture = { }
