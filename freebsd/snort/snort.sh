@@ -74,8 +74,8 @@ echo ""
 cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
 echo "snort_enable="YES" >> /etc/rc.conf"
-chmod +x ~/devopsScripts/snort/snort3
-cp ~/devopsScripts/snort/snort3 /usr/local/etc/rc.d/.
+chmod +x ~/devopsScripts/freebsd/snort/snort3
+cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
 
 
 
