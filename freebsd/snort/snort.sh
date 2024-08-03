@@ -63,6 +63,7 @@ SSH_ALERT='alert tcp any any -> $HOME_NET 22 (msg:"SSH connection attempt"; sid:
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
+echo $SSH_ALERT >> $SMBGHOST_RULES
 echo ""
 echo "SMB GHOST rule at $SMBGHOST_RULES"
 cat $SMBGHOST_RULES
