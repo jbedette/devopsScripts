@@ -88,7 +88,13 @@ chmod -R 755 /var/log/snort
 echo '#!/bin/sh 
 snort -c /usr/local/etc/snort/snort.lua -i hn0 -T' > snort_check.sh
 chmod +x snort_check.sh
-cp snort_check.sh /usr/local/etc/snort/
+
+
+echo '#!/bin/sh 
+snort -c /usr/local/etc/snort/snort.lua -i hn0 -v' > snort_run.sh
+chmod +x snort_run.sh
+
+
 
 echo "snort3 start"
 service snort3 start
