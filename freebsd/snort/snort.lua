@@ -268,23 +268,24 @@ alert_fast = {
 -- you can enable with defaults from the command line with -L <log_type>
 --log_codecs = { }
 --log_hext = { }
-log_pcap = {
-    limit = 1000,
-    file = true,
-    log_dir = '/var/log/snort',
-}
+-- log_pcap = {
+--     limit = 1000,
+--     file = true,
+--     log_dir = '/var/log/snort/',
+-- }
 
 
 -- additional logs
 --packet_capture = { }
-file_log = {
-    log_dir = '/var/log/snort',
-    fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
-    file = 'snort.log',
-}
+-- file_log = {
+--     log_dir = '/var/log/snort/',
+--     fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+--     file = 'snort.log',
+-- }
 
 -- loggers = { file_log }
-loggers = { file_log, alert_fast }
+-- loggers = { file_log, alert_fast }
+loggers = { alert_fast }
 
 ---------------------------------------------------------------------------
 -- 8. configure tweaks
