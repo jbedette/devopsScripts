@@ -74,6 +74,7 @@ cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
 # make snort log location
 mkdir -p /var/log/snort
+touch /var/log/snort/snort.log
 chmod -R 755 /var/log/snort
 
 
