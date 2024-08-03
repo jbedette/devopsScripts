@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Snort
-echo "Installing Snort..."
+echo "Installing Snort3..."
 pkg install -y snort3
 
 # Check if the installation was successful
@@ -72,7 +72,13 @@ echo "SMB GHOST rule at $SMBGHOST_RULES"
 cat $SMBGHOST_RULES
 echo ""
 cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
-# snort -c /etc/snort/snort.lua --reload
+
+echo "snort_enable="YES" >> /etc/rc.conf"
+chmod +x ~/devopsScripts/snort/snort3
+cp ~/devopsScripts/snort/snort3 /usr/local/etc/rc.d/.
+
+
+
 snort -c /usr/local/etc/snort/snort.lua -T
 echo ""
 snort -c /usr/local/etc/snort/snort.lua -T | grep smbghost
@@ -81,3 +87,5 @@ snort -c /usr/local/etc/snort/snort.lua -T' > snort_check.sh
 chmod +x snort_check.sh
 cp snort_check.sh /usr/local/etc/snort/
 cp snort_check.sh ~/devopsScripts
+service snort3 start
+
