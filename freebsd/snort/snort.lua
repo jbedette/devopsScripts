@@ -268,11 +268,11 @@ alert_fast = {
 -- you can enable with defaults from the command line with -L <log_type>
 --log_codecs = { }
 --log_hext = { }
--- log_pcap = {
---     limit = 1000,
---     file = true,
---     log_dir = '/var/log/snort',
--- }
+log_pcap = {
+    limit = 1000,
+    file = true,
+    log_dir = '/var/log/snort',
+}
 
 
 -- additional logs
