@@ -267,7 +267,13 @@ rate_filter =
 
 -- additional logs
 --packet_capture = { }
---file_log = { }
+file_log = {
+    log_dir = '/var/log/snort',
+    fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+    file = 'snort.log',
+}
+
+loggers = { file_log }
 
 ---------------------------------------------------------------------------
 -- 8. configure tweaks
