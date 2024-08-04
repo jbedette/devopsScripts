@@ -112,7 +112,7 @@ SNRTL="setenv SNRTL '/usr/local/etc/snort/snort.lua'"
 SLOGS="setenv SLOGS '/var/log/snort'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
-echo $SLOGS >> ~./cshrc
+echo $SLOGS >> ~/.cshrc
 source ~/.cshrc
 echo $SNRT
 echo $SNRTL
