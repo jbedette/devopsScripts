@@ -111,4 +111,4 @@ service snort3 status
 tail /var/log/messages
 #tail /var/log/snort/snort.log
 
-snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
+# snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
