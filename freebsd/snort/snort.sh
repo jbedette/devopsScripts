@@ -77,13 +77,6 @@ mkdir -p /var/log/snort
 touch /var/log/snort/snort.log
 chmod -R 755 /var/log/snort
 
-#set env variables for ease of testing
-setenv SNRT /usr/local/etc/snort/
-setenv SNRTL /usr/local/etc/snort/snort.lua
-setenv SLOGS /var/log/snort
-echo $SNRT
-echo $SNRTL
-echo $SLOGS
 
 
 # # Snort rule config tests
@@ -112,3 +105,11 @@ tail /var/log/messages
 #tail /var/log/snort/snort.log
 
 # snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
+
+#set env variables for ease of testing
+setenv SNRT '/usr/local/etc/snort/'
+setenv SNRTL '/usr/local/etc/snort/snort.lua'
+setenv SLOGS '/var/log/snort'
+echo $SNRT
+echo $SNRTL
+echo $SLOGS
