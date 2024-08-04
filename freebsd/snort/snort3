@@ -24,9 +24,14 @@ command="/usr/local/bin/snort"
 command_args="-c ${snort_conf} -i ${snort_interface} -D"
 
 pidfile="/var/run/${name}.pid"
+logfile="/var/log/snort/snortD.log"
 
 start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
 stop_cmd="kill \$(cat ${pidfile})"
+
+log_stop() {
+  echo "$(date): ${name} stopped" >> ${logfile}
+}
 
 
 run_rc_command "$1"
