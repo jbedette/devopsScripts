@@ -17,11 +17,11 @@ rcvar=snort_enable
 load_rc_config $name
 
 : ${snort_enable:="NO"}
-: ${snort_interface:="hn0"}
+: ${snort_interface:="any"}
 : ${snort_conf:="/usr/local/etc/snort/snort.lua"}
 
 command="/usr/local/bin/snort"
-command_args="-c ${snort_conf} -i ${snort_interface} -D"
+command_args="-c ${snort_conf} -i ${snort_interface} -l /var/log/snort/ -D"
 
 pidfile="/var/run/${name}.pid"
 
