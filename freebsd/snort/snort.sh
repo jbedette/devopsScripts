@@ -107,9 +107,13 @@ tail /var/log/messages
 # snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
 
 #set env variables for ease of testing
-setenv SNRT '/usr/local/etc/snort/'
-setenv SNRTL '/usr/local/etc/snort/snort.lua'
-setenv SLOGS '/var/log/snort'
+SNRT="setenv SNRT '/usr/local/etc/snort/'"
+SNRTL="setenv SNRTL '/usr/local/etc/snort/snort.lua'"
+SLOGS="setenv SLOGS '/var/log/snort'"
+echo $SNRT >> ~/.cshrc
+echo $SNRTL >> ~/.cshrc
+echo $SLOGS >> ~./cshrc
+source ~/.cshrc
 echo $SNRT
 echo $SNRTL
 echo $SLOGS
