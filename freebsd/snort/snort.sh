@@ -86,7 +86,7 @@ chmod -R 755 /var/log/snort
 # echo ""
 
 echo '#!/bin/sh 
-snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' > snort_check.sh
+snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' > snort_check.sh
 chmod +x snort_check.sh
 
 echo '#!/bin/sh 
