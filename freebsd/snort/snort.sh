@@ -103,3 +103,5 @@ service snort3 status
 
 tail /var/log/messages
 #tail /var/log/snort/snort.log
+
+snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap
