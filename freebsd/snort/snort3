@@ -21,7 +21,7 @@ load_rc_config $name
 : ${snort_conf:="/usr/local/etc/snort/snort.lua"}
 
 command="/usr/local/bin/snort"
-command_args="-c ${snort_conf} -l /var/log/snort/ -D"
+command_args="-c ${snort_conf} -D"
 
 pidfile="/var/run/${name}.pid"
 
