@@ -59,11 +59,13 @@ SMBGHOST_DROP='drop tcp any any -> any 445
     rev:1;
 )'
 SSH_ALERT='alert tcp any any -> $HOME_NET 22222 (msg:"SSH connection attempt"; sid:1000003; rev:1;)'
+ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:1000004;rev:1)'
 
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
 echo $SSH_ALERT >> $SMBGHOST_RULES
+echo $ANY_ALERT >> $SMBGHOST_RULES
 echo ""
 echo "SMB GHOST rule at $SMBGHOST_RULES"
 cat $SMBGHOST_RULES
@@ -110,3 +112,5 @@ SLOGS="setenv SLOGS '/var/log/snort'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
+
+./snort_check.sh | tee > schech.txt
