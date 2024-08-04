@@ -254,10 +254,10 @@ rate_filter =
 -- uncomment below to set non-default configs
 --alert_csv = { }
 alert_fast = { 
-    file = true,
+    file = false,
     limit = 100,
-    fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
-    output = "alert_fast.log",
+    -- fields = 'timestamp pkt_num proto pkt_gen pkt_md alert msg ip_src ip_dst sport dport',
+    -- output = "alert_fast.log",
 }
 --alert_full = { }
 --alert_sfsocket = { }
