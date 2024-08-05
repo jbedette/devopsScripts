@@ -22,26 +22,13 @@
 
 -- Configure interfaces
 interfaces = {
-    'em0', -- First interface
-    'em1'  -- Second interface
+    'hn0', -- First interface
+    'hn1'  -- Second interface
 }
 
 -- Example configuration
 sniffing = {
     interface = interfaces
-}
-
--- Configure DAQ for inline operation
-daq = {
-    module = 'netmap',
-    mode = 'inline',
-    snaplen = 1518,
-    outputs = {
-        {
-            module = 'daq',
-            args = 'hn0:hn1'
-        }
-    }
 }
 
 -- HOME_NET and EXTERNAL_NET must be set now
