@@ -33,6 +33,7 @@ command_args="-c ${snort_conf} -i -D -l ${snort_log} -R ${smbghost_rules}"
 
 pidfile="/var/run/${name}.pid"
 logfile="/var/log/snort/snortD.log"
+start_log="/var/log/snort/snort_start.log"
 
 start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
 stop_cmd="kill \$(cat ${pidfile})"
