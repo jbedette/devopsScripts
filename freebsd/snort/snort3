@@ -28,7 +28,7 @@ load_rc_config $name
 : ${smbghost_rules="/usr/local/etc/snort/rules/smbghost.rules"}
 
 command="/usr/local/bin/snort"
-command_args="-c ${snort_conf} -i -D -l ${snort_log} -R ${smbghost_rules}"
+command_args="-c ${snort_conf} -i -l ${snort_log} -R ${smbghost_rules}"
 # command_args="-c ${snort_conf} -i ${snort_interface} -D -l ${snort_log} -R ${smbghost_rules}"
 
 pidfile="/var/run/${name}.pid"
