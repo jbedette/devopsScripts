@@ -113,7 +113,7 @@ SNRTS="setenv SNRTS 'service snort3 status'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
-echot $SNRTS >> ~/.cshrc
+echo $SNRTS >> ~/.cshrc
 
 service snort3 status
 # ./snort_check.sh | tee > scheck.txt
