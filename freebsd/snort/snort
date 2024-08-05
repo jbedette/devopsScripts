@@ -21,7 +21,7 @@ command="/usr/local/bin/snort"
 snort_confdir=${snort_confdir:-"/usr/local/etc/snort"}
 pidfile="/var/run/snort.pid"
 required_files="${snort_confdir}/snort.lua"
-command_args="-c ${snort_confdir}/snort.lua -D -i hn0 -i hn1 -l /var/log/snort -u root"
+command_args="-c ${snort_confdir}/snort.lua -D -i hn0 -l /var/log/snort -u root"
 
 load_rc_config $name
 run_rc_command "$1"
