@@ -24,7 +24,7 @@ required_files="${snort_confdir}/snort.lua"
 # command_args="-c ${snort_confdir}/snort.lua -D -i hn0 -l /var/log/snort -u root"
 # command_args="-c ${snort_confdir}/snort.lua -D -l /var/log/snort -u root -g wheel --daq afpacket --daq-mode inline --daq-var snaplen=1518 --daq-var hn0 --daq-var hn1"
 # command_args="-c ${snort_confdir}/snort.lua -D -l /var/log/snort -u root -g wheel --daq netmap --daq-mode inline --daq-var snaplen=1518 --daq-var hn0 --daq-var hn1"
-command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-mode inline --daq-var snaplen=1518 -D -l /var/log/snort -u root -g wheel"
+command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-mode inline --daq-var snaplen=1518 -D -l /var/log/snort -u root -g wheel --daq-var hn0 --daq-var hn1"
 
 load_rc_config $name
 run_rc_command "$1"
