@@ -33,9 +33,9 @@ sniffing = {
 
 -- HOME_NET and EXTERNAL_NET must be set now
 -- setup the network addresses you are protecting
--- HOME_NET = 'any'
+HOME_NET = 'any'
 -- HOME_NET = '172.23.60.16,192.168.33.0/24'
-HOME_NET = '192.168.33.0/24'
+-- HOME_NET = '192.168.33.0/24'
 
 -- set up the external network addresses.
 -- (leave as "any" in most situations)
