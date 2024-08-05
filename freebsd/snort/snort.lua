@@ -203,7 +203,8 @@ ips =
 
     variables = default_variables,
     rules = [[
-       include /usr/local/etc/snort/rules/smbghost.rules
+        config order: pass alert log
+        include /usr/local/etc/snort/rules/smbghost.rules
     ]]
 }
 
