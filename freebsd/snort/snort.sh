@@ -100,7 +100,7 @@ service snort3 start
 echo "snort3 status"
 service snort3 status
 
-tail /var/log/messages
+#tail /var/log/messages
 #tail /var/log/snort/snort.log
 
 # snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
@@ -113,4 +113,4 @@ echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
 
-./snort_check.sh | tee > schech.txt
+# ./snort_check.sh | tee > scheck.txt

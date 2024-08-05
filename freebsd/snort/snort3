@@ -14,24 +14,27 @@
 name="snort3"
 rcvar=snort_enable
 
+# snort -c /usr/local/etc/snort/snort.lua 
+# -R /usr/local/etc/snort/rules/smbghost.rules 
+# -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' 
+# -l /var/log/snort > snort_check.sh'
+
 load_rc_config $name
 
 : ${snort_enable:="NO"}
 : ${snort_interface:="hn0"}
 : ${snort_conf:="/usr/local/etc/snort/snort.lua"}
+: ${snort_log:="/var/log/snort"}
+: ${smbghost_rules="/usr/local/etc/snort/rules/smbghost.rules"}
 
 command="/usr/local/bin/snort"
-command_args="-c ${snort_conf} -i ${snort_interface} -D"
+command_args="-c ${snort_conf} -i ${snort_interface} -D -l ${snort_log} -R ${smbghost_rules}"
 
 pidfile="/var/run/${name}.pid"
 logfile="/var/log/snort/snortD.log"
 
 start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
 stop_cmd="kill \$(cat ${pidfile})"
-
-log_stop() {
-  echo "$(date): ${name} stopped" >> ${logfile}
-}
 
 
 run_rc_command "$1"
