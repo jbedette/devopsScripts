@@ -33,13 +33,13 @@ sniffing = {
 
 -- Configure DAQ for inline operation
 daq = {
-    module = 'afpacket',
+    module = 'netmap',
     mode = 'inline',
     snaplen = 1518,
     outputs = {
         {
             module = 'daq',
-            args = 'em0:em1'
+            args = 'hn0:hn1'
         }
     }
 }
