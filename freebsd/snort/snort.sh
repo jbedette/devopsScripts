@@ -20,8 +20,10 @@ sysrc snort_enable="YES"
 # sysrc snort_conf="/usr/local/etc/snort/snort.lua"
 
 # move snort service to correct place
-chmod +x ~/devopsScripts/freebsd/snort/snort3
-cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
+# chmod +x ~/devopsScripts/freebsd/snort/snort3
+# cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
+chmod +x ~/devopsScripts/freebsd/snort/snort
+cp ~/devopsScripts/freebsd/snort/snort/usr/local/etc/rc.d/.
 
 # Check if enabling Snort was successful
 if [ $? -eq 0 ]; then
@@ -101,10 +103,14 @@ echo '#!/bin/sh
 snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -v > run_dump.txt' > run_snort.sh
 chmod +x run_snort.sh
 
-echo "snort3 start"
-service snort3 start
-echo "snort3 status"
-service snort3 status
+# echo "snort3 start"
+# service snort3 start
+# echo "snort3 status"
+# service snort3 status
+echo "snort start"
+service snort start
+echo "snort status"
+service snort status
 
 #tail /var/log/messages
 #tail /var/log/snort/snort.log
@@ -115,11 +121,11 @@ service snort3 status
 SNRT="setenv SNRT '/usr/local/etc/snort/'"
 SNRTL="setenv SNRTL '/usr/local/etc/snort/snort.lua'"
 SLOGS="setenv SLOGS '/var/log/snort'"
-SNRTS="setenv SNRTS 'service snort3 status'"
+SNRTS="setenv SNRTS 'service snort status'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
 echo $SNRTS >> ~/.cshrc
 
-service snort3 status
+service snort status
 # ./snort_check.sh | tee > scheck.txt
