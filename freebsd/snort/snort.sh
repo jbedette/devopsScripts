@@ -88,6 +88,9 @@ chown root:wheel /usr/local/bin/snort
 chown root:wheel /usr/local/etc/snort/snort.lua
 chown root:wheel /var/log/snort
 
+# turn off sums for testing
+ifconfig hn0 -txcsum -rxcsum
+ifconfig hn1 -txcsum -rxcsum
 
 
 

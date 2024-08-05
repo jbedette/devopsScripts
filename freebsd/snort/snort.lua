@@ -37,7 +37,8 @@ HOME_NET = 'any'
 
 -- set up the external network addresses.
 -- (leave as "any" in most situations)
-EXTERNAL_NET = '172.23.60.16,192.168.33.0/24'
+-- EXTERNAL_NET = '172.23.60.16,192.168.33.0/24'
+EXTERNAL_NET = 'any'
 
 include 'snort_defaults.lua'
 
