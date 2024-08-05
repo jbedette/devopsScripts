@@ -23,7 +23,7 @@ sysrc snort_enable="YES"
 # chmod +x ~/devopsScripts/freebsd/snort/snort3
 # cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
 chmod +x ~/devopsScripts/freebsd/snort/snort
-cp ~/devopsScripts/freebsd/snort/snort/usr/local/etc/rc.d/.
+cp ~/devopsScripts/freebsd/snort/snort /usr/local/etc/rc.d/.
 
 # Check if enabling Snort was successful
 if [ $? -eq 0 ]; then
