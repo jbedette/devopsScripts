@@ -31,6 +31,18 @@ sniffing = {
     interface = interfaces
 }
 
+-- Configure DAQ for inline operation
+daq = {
+    module = 'afpacket',
+    mode = 'inline',
+    snaplen = 1518,
+    outputs = {
+        {
+            module = 'daq',
+            args = 'em0:em1'
+        }
+    }
+}
 
 -- HOME_NET and EXTERNAL_NET must be set now
 -- setup the network addresses you are protecting
