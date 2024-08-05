@@ -109,9 +109,11 @@ service snort3 status
 SNRT="setenv SNRT '/usr/local/etc/snort/'"
 SNRTL="setenv SNRTL '/usr/local/etc/snort/snort.lua'"
 SLOGS="setenv SLOGS '/var/log/snort'"
+SNRTS="setenv SNRTS 'service snort3 status'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
+echot $SNRTS >> ~/.cshrc
 
 service snort3 status
 # ./snort_check.sh | tee > scheck.txt
