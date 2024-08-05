@@ -92,6 +92,10 @@ chown root:wheel /var/log/snort
 ifconfig hn0 -txcsum -rxcsum
 ifconfig hn1 -txcsum -rxcsum
 
+# make a bridge
+ifconfig bridge create
+ifconfig bridge0 addm hn0 addm hn1
+
 
 
 # # Snort rule config tests
