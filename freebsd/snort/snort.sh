@@ -79,6 +79,12 @@ mkdir -p /var/log/snort
 #touch /var/log/snort/snort.log
 chmod -R 755 /var/log/snort
 
+# add snort to groups for service
+chown root:wheel /usr/local/bin/snort
+chown root:wheel /usr/local/etc/snort/snort.lua
+chown root:wheel /var/log/snort
+
+
 
 
 # # Snort rule config tests
