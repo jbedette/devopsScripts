@@ -113,4 +113,5 @@ echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
 
+service snort3 status
 # ./snort_check.sh | tee > scheck.txt
