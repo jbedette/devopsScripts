@@ -91,9 +91,9 @@ echo '#!/bin/sh
 snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' -l /var/log/snort > snort_check.sh
 chmod +x snort_check.sh
 
-# echo '#!/bin/sh 
-# snort -c /usr/local/etc/snort/snort.lua -i hn0 -v' > snort_run.sh
-# chmod +x snort_run.sh
+echo '#!/bin/sh 
+snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -v > run_dump.txt' > snort_run.sh
+chmod +x run_snort.sh
 
 echo "snort3 start"
 service snort3 start
