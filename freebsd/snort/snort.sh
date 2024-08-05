@@ -92,7 +92,7 @@ snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.r
 chmod +x snort_check.sh
 
 echo '#!/bin/sh 
-snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -v > run_dump.txt' > snort_run.sh
+snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -v > run_dump.txt' > run_snort.sh
 chmod +x run_snort.sh
 
 echo "snort3 start"
