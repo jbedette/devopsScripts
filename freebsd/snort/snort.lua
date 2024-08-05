@@ -19,6 +19,19 @@
 -- 1. configure defaults
 ---------------------------------------------------------------------------
 
+
+-- Configure interfaces
+interfaces = {
+    'em0', -- First interface
+    'em1'  -- Second interface
+}
+
+-- Example configuration
+sniffing = {
+    interface = interfaces
+}
+
+
 -- HOME_NET and EXTERNAL_NET must be set now
 -- setup the network addresses you are protecting
 HOME_NET = 'any'
