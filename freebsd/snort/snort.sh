@@ -68,10 +68,8 @@ echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
 echo $SSH_ALERT >> $SMBGHOST_RULES
 echo $ANY_ALERT >> $SMBGHOST_RULES
-echo ""
-echo "SMB GHOST rule at $SMBGHOST_RULES"
-cat $SMBGHOST_RULES
-echo ""
+# echo "SMB GHOST rule at $SMBGHOST_RULES"
+# cat $SMBGHOST_RULES
 
 # update snort.lua with new file pointing to my rules
 cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
@@ -127,5 +125,5 @@ echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
 echo $SNRTS >> ~/.cshrc
 
-service snort status
+# service snort status
 # ./snort_check.sh | tee > scheck.txt
