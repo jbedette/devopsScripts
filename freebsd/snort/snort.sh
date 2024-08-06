@@ -60,7 +60,8 @@ SMBGHOST_DROP='drop tcp any any -> any 445
     sid:1000002;
     rev:1;
 )'
-SSH_PASS='pass tcp any any -> $HOME_NET any (msg:"PASS SSH connection attempt"; sid:1000003; rev:1;)'
+SSH_PASS='pass tcp any any -> $HOME_NET 22222 (msg:"PASS SSH connection attempt"; sid:1000003; rev:1;)'
+SSH_LOG='log tcp any any -> $HOME_NET 22222 (msg:"log SSH connection attempt"; sid:1000003; rev:1;)'
 SSH_ALERT='alert tcp any any -> $HOME_NET 22 (msg:"ALERT SSH connection attempt"; sid:1000004; rev:1;)'
 SSH_ALERT_22222='alert tcp any any -> $HOME_NET 22222 (msg:"ALERT SSH connection attempt"; sid:1000005; rev:1;)'
 ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:1000006;rev:1)'
@@ -68,6 +69,7 @@ ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:100000
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
+echo $SSH_LOG >> $SMBGHOST_RULES
 echo $SSH_PASS >> $SMBGHOST_RULES
 echo $SSH_ALERT >> $SMBGHOST_RULES
 echo $SSH_ALERT_22222 >> $SMBGHOST_RULES
