@@ -61,7 +61,19 @@ SMBGHOST_DROP='drop tcp any any -> any 445
     sid:1000002;
     rev:1;
 )'
-SMBGHOST_ALERT2='alert tcp any any -> any 445 (msg:"SMB SMBGhost CVE-2020-0796 exploit attempt"; flow:to_server,established; content:"|FF|SMB3"; content:"|01 00 00 00|"; distance:4; within:4; metadata:service smb; reference:cve,2020-0796; sid:1000003; rev:1;)'
+SMBGHOST_ALERT2='alert tcp any any -> any 445 
+(
+    msg:"SMB SMBGhost CVE-2020-0796 exploit attempt";
+    flow:to_server, established;
+    content:"|FF|SMB3";
+    content:"|01 00 00 00|";
+    classtype:attempted-admin;
+    metadata:service smb;
+    reference:cve,2020-0796;
+    sid:1000003;
+    rev:1;
+)'
+
 SSH_LOG='log tcp any any -> $HOME_NET 22222 (msg:"LOG SSH connection attempt"; sid:1000003; rev:1;)'
 SSH_PASS='pass tcp any 22222 -> any 22 (msg:"PASS SSH connection attempt"; sid:1000004; rev:1;)'
 SSH_PASS_ALL='pass tcp any any -> any any (msg:"PASS SSH connection attempt"; sid:1000004; rev:1;)'
