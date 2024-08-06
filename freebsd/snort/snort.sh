@@ -96,7 +96,9 @@ ifconfig hn1 -txcsum -rxcsum
 
 # make a bridge
 ifconfig bridge0 create
-ifconfig bridge0 addm hn0 addm hn1
+ifconfig bridge1 create
+ifconfig bridge0 addm hn0
+ifconfig bridge1 addm hn1
 # ifconfig bridge0 addm hn0
 
 
