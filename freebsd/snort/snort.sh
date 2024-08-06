@@ -68,7 +68,7 @@ ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:100000
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
-# echo $SSH_PASS >> $SMBGHOST_RULES
+echo $SSH_PASS >> $SMBGHOST_RULES
 echo $SSH_ALERT >> $SMBGHOST_RULES
 echo $SSH_ALERT_22222 >> $SMBGHOST_RULES
 # echo $ANY_ALERT >> $SMBGHOST_RULES
