@@ -26,7 +26,7 @@ required_files="${snort_confdir}/snort.lua"
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var mem=2048 --daq-mode inline -i bridge0:hn1 -D -l /var/log/snort -u root -g wheel "
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var mem=2048 --daq-mode inline -i hn0:hn1 -D -l /var/log/snort -u root -g wheel "
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var mem=2048 --daq-mode inline -i bridge0:bridge1 -D -l /var/log/snort -u root -g wheel "
-command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var debug --daq-var port=netmap:hn1 -i hn0:hn1 -D -l /var/log/snort -u root -g wheel -Q"
+command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var debug --daq-var port=netmap:hn1 --daq-var port=netmap:hn0 -i hn0:hn1 -D -l /var/log/snort -u root -g wheel -Q"
 
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-mode inline -i bridge0 -D -l /var/log/snort -u root -g wheel "
 load_rc_config $name
