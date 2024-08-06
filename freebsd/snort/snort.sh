@@ -135,7 +135,7 @@ service snort status
 #set env variables for ease of testing
 SNRT="setenv SNRT '/usr/local/etc/snort/'"
 SNRTL="setenv SNRTL '/usr/local/etc/snort/snort.lua'"
-SLOGS="setenv SLOGS '/var/log/snort'"
+SLOGS="setenv LOGS 'cat /var/log/snort/alert*'"
 SNRTS="setenv SNRTS 'service snort status'"
 echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
