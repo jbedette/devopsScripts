@@ -40,6 +40,7 @@ nat on $ext_if from $int_if:network to any -> ($ext_if)
 #Redirection rules
 # Forward SSH traffic from bastion host port 22 to Ubuntu system port 22
 rdr on $ext_if proto tcp from any to ($ext_if) port 22 -> $server port 22
+rdr on $ext_if proto tcp from any to ($ext_if) port 22222 -> $server port 22
 
 #blocking rules
 antispoof quick for $ext_if
