@@ -59,7 +59,7 @@ SMBGHOST_ALERT2='alert tcp any any -> any 445
     sid:1000003;
     rev:1;
 )'
-SMBGHOST_ALERT3='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 basic content detection"; content:"|FE|SMB|"; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000010; rev:1;)'
+SMBGHOST_ALERT3='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 basic content detection"; content:"|FE|SMB|"; content:"|FF 53 4D 42|"; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000010; rev:1;)'
 
 
 SMBGHOST_DROP='drop tcp any any -> any 445 
@@ -85,7 +85,7 @@ ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:100000
 mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
-echo $SMBGHOST_ALERT2 >> $SMBGHOST_RULES
+# echo $SMBGHOST_ALERT2 >> $SMBGHOST_RULES
 echo $SMBGHOST_ALERT3 >> $SMBGHOST_RULES
 # echo $SSH_LOG >> $SMBGHOST_RULES
 # echo $SSH_PASS_ALL >> $SMBGHOST_RULES
