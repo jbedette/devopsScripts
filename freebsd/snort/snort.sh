@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# pkg install -y tcpreplay
+pkg install -y tcpreplay
 
 # # Install Snort
 # echo "Installing Snort3..."
@@ -154,6 +154,10 @@ chmod +x snort_check.sh
 echo '#!/bin/sh 
 snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -i hn0 -l /var/log/snort -u root -g wheel' > run_snort.sh
 chmod +x run_snort.sh
+
+echo '#!/bin/sh 
+tcpreplay -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -i hn0' > replay_smb.sh
+chmod +x replay_smb.sh
 
 # echo "snort3 start"
 # service snort3 start
