@@ -38,3 +38,14 @@ alert tcp any any -> any 445
     sid:1000004;
     rev:1;
 )
+
+drop tcp any any -> any 445 (
+    msg:"1 !DROP! SMBGhost Attempt - CVE-2020-0796 - SMBv3 Compression Vulnerability"; 
+    flow:to_server,established; 
+    content:"|FE 53 4D 42 40 00 00 00|"; 
+    content:"|08|", offset 70, depth 1; 
+    reference:cve,2020-0796; 
+    classtype:attempted-admin; 
+    sid:1000005; 
+    rev:1;
+)
