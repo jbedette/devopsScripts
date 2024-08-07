@@ -21,7 +21,7 @@ command="/usr/local/bin/snort"
 snort_confdir=${snort_confdir:-"/usr/local/etc/snort"}
 pidfile="/var/run/snort.pid"
 required_files="${snort_confdir}/snort.lua"
-command_args="-c ${snort_confdir}/snort.lua --i hn0 -D -l /var/log/snort -u root -g wheel "
+command_args="-c ${snort_confdir}/snort.lua -i hn0 -D -l /var/log/snort -u root -g wheel "
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-mode passive --daq-var snaplen=1518  --daq-var txcsum=on --daq-var rxcsum=on -i hn0:hn1 -D -l /var/log/snort -u root -g wheel "
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-mode inline --daq-var txcsum=on --daq-var rxcsum=on -i hn0:hn1 -D -l /var/log/snort -u root -g wheel "
 # command_args="-c ${snort_confdir}/snort.lua --daq netmap --daq-var mem=2048 --daq-mode inline -i bridge0:hn1 -D -l /var/log/snort -u root -g wheel "

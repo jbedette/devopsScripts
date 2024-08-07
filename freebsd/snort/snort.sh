@@ -66,9 +66,6 @@ SMBGHOST_DROP='drop tcp any any -> any 445
 SMBGHOST_ALERT2='alert tcp any any -> any 445 
 (
     msg:"SMB SMBGhost CVE-2020-0796 exploit attempt";
-    flow:to_server, established;
-    content:"|FF|SMB3";
-    content:"|01 00 00 00|";
     classtype:attempted-admin;
     metadata:service smb;
     reference:cve,2020-0796;
@@ -134,7 +131,7 @@ snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.r
 chmod +x snort_check.sh
 
 echo '#!/bin/sh 
-snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -v > run_dump.txt' > run_snort.sh
+snort -c /usr/local/etc/snort/snort.lua -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -i hn0 -l /var/log/snort -u root -g wheel' > run_snort.sh
 chmod +x run_snort.sh
 
 # echo "snort3 start"
