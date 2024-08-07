@@ -65,7 +65,7 @@ SMBGHOST_DROP='drop tcp any any -> any 445
 )'
 SMBGHOST_ALERT2='alert tcp any any -> any 445 
 (
-    msg:"SMB SMBGhost CVE-2020-0796 exploit attempt";
+    msg:"ANY 445 SMB SMBGhost CVE-2020-0796 exploit attempt";
     classtype:attempted-admin;
     metadata:service smb;
     reference:cve,2020-0796;
