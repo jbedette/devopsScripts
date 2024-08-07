@@ -29,6 +29,16 @@ alert tcp any any -> any 445 (
     sid:1000003; 
     rev:1;
 )
+alert tcp any any -> any 445 
+(
+    msg:"4 !TEST! ANY 445 connection default test";
+    classtype:attempted-admin;
+    metadata:service smb;
+    reference:cve,2020-0796;
+    sid:1000004;
+    rev:1;
+)
+
 
 drop tcp any any -> any 445 (
     msg:"1 !DROP! SMBGhost Attempt - CVE-2020-0796 - SMBv3 Compression Vulnerability"; 
