@@ -24,16 +24,6 @@ cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
 # make snort log location
 mkdir -p /var/log/snort
-# chmod -R 755 /var/log/snort
-
-# add snort to groups for service
-# chown root:wheel /usr/local/bin/snort
-# chown root:wheel /usr/local/etc/snort/snort.lua
-# chown root:wheel /var/log/snort
-
-# turn off sums for testing
-# ifconfig hn0 -txcsum -rxcsum
-# ifconfig hn1 -txcsum -rxcsum
 
 # echo '#!/bin/sh 
 # snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' -l /var/log/snort > snort_check.sh
@@ -51,7 +41,6 @@ echo "snort start"
 service snort start
 echo "snort status"
 service snort status
-
 
 #set env variables for ease of testing
 SNRT="setenv SNRT '/usr/local/etc/snort/'"
