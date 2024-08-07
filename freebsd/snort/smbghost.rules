@@ -39,6 +39,7 @@ alert tcp any any -> any 445
     rev:1;
 )
 
+
 drop tcp any any -> any 445 (
     msg:"1 !DROP! SMBGhost Attempt - CVE-2020-0796 - SMBv3 Compression Vulnerability"; 
     flow:to_server,established; 
