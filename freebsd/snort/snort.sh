@@ -62,7 +62,7 @@ SMBGHOST_ALERT2='alert tcp any any -> any 445
 SMBGHOST_ALERT3='alert tcp any any -> any 445 
 (
     msg:"3, SMBv3 CVE-2020-0796 exploit attempt";
-    flow:to_server,established;
+    content:"|FE|SMB|";
     content:"|40 00 00 00|";
     content:"|FF 53 4D 42|";
     byte_test:1,&,0x08;
