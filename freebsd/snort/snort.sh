@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pkg install -y tcpreplay
+# pkg install -y tcpreplay
 
 # # Install Snort
 # echo "Installing Snort3..."
