@@ -61,7 +61,7 @@ SMBGHOST_ALERT2='alert tcp any any -> any 445
 )'
 SMBGHOST_ALERT3='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 basic content detection"; content:"|FF 53 4D 42|"; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000010; rev:1;)'
 
-SMBGHOST_ALERT4='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 exploit attempt"; flow:to_server,established; content:"|FF 53 4D 42|", offset:4, depth:4; content:"|FE|SMB|", offset:0, depth:4; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000011; rev:1;)'
+SMBGHOST_ALERT4='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 exploit attempt"; flow:to_server,established; content:"|FF 53 4D 42|", depth 4 , offset 4; content:"|FE|SMB|", depth 4, offset 0; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000011; rev:1;)'
 
 SMBGHOST_DROP='drop tcp any any -> any 445 
 (
