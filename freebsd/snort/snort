@@ -23,5 +23,8 @@ pidfile="/var/run/snort.pid"
 required_files="${snort_confdir}/snort.lua"
 command_args="-c ${snort_confdir}/snort.lua -i hn0 -D -l /var/log/snort -u root -g wheel "
 
+start_cmd="${command} ${command_args} > /dev/null 2>&1 & echo \$! > ${pidfile}"
+stop_cmd="kill \$(cat ${pidfile})"
+
 load_rc_config $name
 run_rc_command "$1"
