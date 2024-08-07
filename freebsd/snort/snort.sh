@@ -24,12 +24,12 @@ cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
 # make snort log location
 mkdir -p /var/log/snort
-chmod -R 755 /var/log/snort
+# chmod -R 755 /var/log/snort
 
 # add snort to groups for service
-chown root:wheel /usr/local/bin/snort
-chown root:wheel /usr/local/etc/snort/snort.lua
-chown root:wheel /var/log/snort
+# chown root:wheel /usr/local/bin/snort
+# chown root:wheel /usr/local/etc/snort/snort.lua
+# chown root:wheel /var/log/snort
 
 # turn off sums for testing
 # ifconfig hn0 -txcsum -rxcsum
