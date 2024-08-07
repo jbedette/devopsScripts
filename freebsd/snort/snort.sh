@@ -41,7 +41,7 @@ SMBGHOST_ALERT='alert tcp any any -> any 445
 (
     msg:"1, SMBGhost attempt detected";
     flow:to_server,established;
-    content:"|FC53 4AAF|";
+    content:"|FC53 4AAF|", depth 4, offset 4;
     byte_test:1,!&,0x01,0;
     byte_test:1,&,0x08,4;
     metadata:service smb;
