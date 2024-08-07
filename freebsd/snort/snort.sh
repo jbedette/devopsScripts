@@ -50,6 +50,21 @@ SMBGHOST_ALERT='alert tcp any any -> any 445
     rev:1;
 )
 '
+SMBGHOST_ALERT3='alert tcp any any -> any 445 
+(
+    msg:"SMBv3 CVE-2020-0796 exploit attempt";
+    flow:to_server,established;
+    content:"|FE|SMB|";
+    content:"|40 00 00 00|";
+    content:"|FF 53 4D 42|";
+    byte_test:1,&,0x08;
+    metadata:service netbios-ssn;
+    reference:cve,2020-0796;
+    classtype:attempted-admin;
+    sid:1000007;
+    rev:1;
+)'
+
 
 SMBGHOST_DROP='drop tcp any any -> any 445 
 (
@@ -84,6 +99,7 @@ mkdir /usr/local/etc/snort/rules
 echo $SMBGHOST_ALERT > $SMBGHOST_RULES
 echo $SMBGHOST_DROP >> $SMBGHOST_RULES
 echo $SMBGHOST_ALERT2 >> $SMBGHOST_RULES
+echo $SMBGHOST_ALERT3 >> $SMBGHOST_RULES
 # echo $SSH_LOG >> $SMBGHOST_RULES
 # echo $SSH_PASS_ALL >> $SMBGHOST_RULES
 # echo $SSH_PASS >> $SMBGHOST_RULES
