@@ -18,12 +18,7 @@
 # Enable Snort to start on boot
 echo "Enabling Snort to start on boot..."
 sysrc snort_enable="YES"
-# sysrc snort_interface="any"
-# sysrc snort_conf="/usr/local/etc/snort/snort.lua"
 
-# move snort service to correct place
-# chmod +x ~/devopsScripts/freebsd/snort/snort3
-# cp ~/devopsScripts/freebsd/snort/snort3 /usr/local/etc/rc.d/.
 chmod +x ~/devopsScripts/freebsd/snort/snort
 cp ~/devopsScripts/freebsd/snort/snort /usr/local/etc/rc.d/.
 
@@ -60,16 +55,8 @@ SMBGHOST_ALERT2='alert tcp any any -> any 445
     rev:1;
 )'
 SMBGHOST_ALERT3='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 basic content detection"; content:"|FF 53 4D 42|"; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000010; rev:1;)'
-
 SMBGHOST_ALERT4='alert tcp any any -> any 445 (msg:"SMBv3 CVE-2020-0796 exploit attempt"; flow:to_server,established; content:"|FF 53 4D 42|", depth 4 , offset 4; content:"|FE|SMB|", depth 4, offset 0; metadata:service netbios-ssn; reference:cve,2020-0796; classtype:attempted-admin; sid:1000011; rev:1;)'
 SMBGHOST_ALERT5='alert tcp any any -> any 445 (msg:"SMBGhost CVE-2020-0796 detected"; content:"|FE 53 4D 42 40 00 00 00 00 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|"; reference:cve,2020-0796; classtype:attempted-admin; sid:1000012; rev:1;)'
-
-# SMBGHOST_ALERT6='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; flow:to_server,established; content:"|FC 53 4A AF|", offset 4, depth 4; byte_test:1,!&,0x01,0; byte_test:1,&,0x08,4; metadata:service smb; reference:cve,2020-0796; sid:2000001; rev:1;)'
-# SMBGHOST_ALERT7='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; flow:to_server,established; content:"|FC 53 4D 42|", offset 4, depth 4; byte_test:1,!&,0x01,0; byte_test:1,&,0x08,4; metadata:service smb; reference:cve,2020-0796; sid:2000002; rev:1;)'
-
-# SMBGHOST_ALERT6='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; content:"|FC 53 4A AF|", offset 4, depth 4; byte_test:1,!&,0x01,0; byte_test:1,&,0x08,4; metadata:service smb; reference:cve,2020-0796; sid:2000001; rev:1;)'
-# SMBGHOST_ALERT7='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; content:"|FC 53 4D 42|", offset 4, depth 4; byte_test:1,!&,0x01,0; byte_test:1,&,0x08,4; metadata:service smb; reference:cve,2020-0796; sid:2000002; rev:1;)'
-
 SMBGHOST_ALERT6='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; content:"|FC 53 4A AF|", offset 4, depth 4; metadata:service smb; reference:cve,2020-0796; sid:2000001; rev:1;)'
 SMBGHOST_ALERT7='alert tcp any any -> any 445 (msg:"SMBGhost attempt detected"; content:"|FC 53 4D 42|", offset 4, depth 4; metadata:service smb; reference:cve,2020-0796; sid:2000002; rev:1;)'
 
@@ -95,24 +82,8 @@ SSH_ALERT_22222='alert tcp any any -> $HOME_NET 22222 (msg:"ALERT SSH connection
 ANY_ALERT='alert tcp any any -> any any (msg:"any tcp thing happened";sid:1000006;rev:1)'
 
 mkdir /usr/local/etc/snort/rules
-# echo $SMBGHOST_ALERT > $SMBGHOST_RULES
-# echo $SMBGHOST_DROP >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT2 >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT3 >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT4 >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT5 >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT6 >> $SMBGHOST_RULES
-# echo $SMBGHOST_ALERT7 >> $SMBGHOST_RULES
 cp ~/devopsScripts/freebsd/snort/smbghost.rules $SMBGHOST_RULES
 
-# echo $SSH_LOG >> $SMBGHOST_RULES
-# echo $SSH_PASS_ALL >> $SMBGHOST_RULES
-# echo $SSH_PASS >> $SMBGHOST_RULES
-# echo $SSH_ALERT >> $SMBGHOST_RULES
-# echo $SSH_ALERT_22222 >> $SMBGHOST_RULES
-# echo $ANY_ALERT >> $SMBGHOST_RULES
-# echo "SMB GHOST rule at $SMBGHOST_RULES"
-# cat $SMBGHOST_RULES
 
 # update snort.lua with new file pointing to my rules
 cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
