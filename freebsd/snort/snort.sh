@@ -119,7 +119,6 @@ cp ~/devopsScripts/freebsd/snort/snort.lua /usr/local/etc/snort/snort.lua
 
 # make snort log location
 mkdir -p /var/log/snort
-#touch /var/log/snort/snort.log
 chmod -R 755 /var/log/snort
 
 # add snort to groups for service
@@ -130,22 +129,6 @@ chown root:wheel /var/log/snort
 # turn off sums for testing
 ifconfig hn0 -txcsum -rxcsum
 ifconfig hn1 -txcsum -rxcsum
-
-# make a bridge
-# ifconfig bridge0 create
-# ifconfig bridge1 create
-# ifconfig bridge0 addm hn0
-# ifconfig bridge1 addm hn1
-# ifconfig bridge0 addm hn0
-
-
-
-
-# # Snort rule config tests
-# snort -c /usr/local/etc/snort/snort.lua -T
-# echo ""
-# snort -c /usr/local/etc/snort/snort.lua -T | grep smbghost
-# echo ""
 
 echo '#!/bin/sh 
 snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap' -l /var/log/snort > snort_check.sh
@@ -159,19 +142,11 @@ echo '#!/bin/sh
 tcpreplay -i hn0 ~/devopsScripts/SMBGHOST/SMBGhost.pcap' > replay_smb.sh
 chmod +x replay_smb.sh
 
-# echo "snort3 start"
-# service snort3 start
-# echo "snort3 status"
-# service snort3 status
 echo "snort start"
 service snort start
 echo "snort status"
 service snort status
 
-#tail /var/log/messages
-#tail /var/log/snort/snort.log
-
-# snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/snort/rules/smbghost.rules -r ~/devopsScripts/SMBGHOST/SMBGhost.pcap -A alert_fast
 
 #set env variables for ease of testing
 SNRT="setenv SNRT '/usr/local/etc/snort/'"
@@ -182,6 +157,3 @@ echo $SNRT >> ~/.cshrc
 echo $SNRTL >> ~/.cshrc
 echo $SLOGS >> ~/.cshrc
 echo $SNRTS >> ~/.cshrc
-
-# service snort status
-# ./snort_check.sh | tee > scheck.txt
