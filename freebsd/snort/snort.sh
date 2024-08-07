@@ -62,7 +62,7 @@ SMBGHOST_ALERT2='alert tcp any any -> any 445
 SMBGHOST_ALERT3='alert tcp any any -> any 445 
 (
     msg:"3, SMBv3 CVE-2020-0796 exploit attempt";
-    content:"|FF 53 4D 42|";
+    content:"|FF53 4D42|";
     metadata:service netbios-ssn;
     reference:cve,2020-0796;
     classtype:attempted-admin;
