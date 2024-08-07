@@ -10,6 +10,7 @@
 echo "Enabling Snort to start on boot..."
 sysrc snort_enable="YES"
 
+# Move snort service to rc.d
 chmod +x ~/devopsScripts/freebsd/snort/snort
 cp ~/devopsScripts/freebsd/snort/snort /usr/local/etc/rc.d/.
 
