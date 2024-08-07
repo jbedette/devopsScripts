@@ -1,19 +1,10 @@
 #!/bin/sh
 
-# pkg install -y tcpreplay
 
-# # Install Snort
-# echo "Installing Snort3..."
+# Install Snort & tcpreplay
+# echo "Installing Snort3 & tcpreplay..."
 # pkg install -y snort3
-# pkg install -y nmap
-
-# Check if the installation was successful
-# if [ $? -eq 0 ]; then
-#     echo "Snort installed successfully."
-# else
-#     echo "Failed to install Snort. Exiting."
-#     exit 1
-# fi
+# pkg install -y tcpreplay
 
 # Enable Snort to start on boot
 echo "Enabling Snort to start on boot..."
