@@ -2,7 +2,7 @@ alert tcp any any -> any 445 (
     msg:"SMBGhost Attempt - CVE-2020-0796 - SMBv3 Compression Vulnerability"; 
     flow:to_server,established; 
     content:"|FE 53 4D 42 40 00 00 00|"; 
-    content:"|08|"; offset:70; depth:1; 
+    content:"|08|", offset 70, depth 1; 
     reference:cve,2020-0796; 
     classtype:attempted-admin; 
     sid:1000001; 
@@ -12,8 +12,8 @@ alert tcp any any -> any 445 (
 alert tcp any any -> any 445 (
     msg:"SMBGhost Attempt - CVE-2020-0796 - SMBv3 Negotiation Response"; 
     flow:to_server,established; 
-    content:"|11|"; offset:4; depth:1; 
-    content:"|00 00 00 00 00 00 00 00|"; distance:64; within:8; 
+    content:"|11|", offset 4, depth 1; 
+    content:"|00 00 00 00 00 00 00 00|", distance 64, within 8; 
     reference:cve,2020-0796; 
     classtype:attempted-admin; 
     sid:1000002; 
@@ -23,9 +23,7 @@ alert tcp any any -> any 445 (
 alert tcp any any -> any 445 (
     msg:"SMBGhost Attempt - CVE-2020-0796 - SMBv3 Connection"; 
     flow:to_server,established; 
-    content:"|40 00 00 00|"; 
-    depth:4; 
-    offset:4; 
+    content:"|40 00 00 00|", depth 4, offset 4; 
     reference:cve,2020-0796; 
     classtype:attempted-admin; 
     sid:1000003; 
