@@ -4,8 +4,8 @@ echo "start snort.sh"
 
 # Install Snort & tcpreplay
 # echo "Installing Snort3 & tcpreplay..."
-# pkg install -y snort3
-# pkg install -y tcpreplay
+pkg install -y snort3
+pkg install -y tcpreplay
 
 # Enable Snort to start on boot
 echo "Enabling Snort to start on boot..."
