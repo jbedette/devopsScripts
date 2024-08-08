@@ -1,9 +1,9 @@
 #!/bin/sh
 
 #pkg install -y tcpreplay
-cp ./freebsd/firewall/firewall.sh ./freebsd/firewall/firewall_x.sh
-cp ./freebsd/snort/snort.sh ./freebsd/snort/snort_x.sh
-chmod +x ./freebsd/firewall/firewall_x.sh
-chmod +x ./freebsd/snort/snort_x.sh
-./freebsd/firewall/firewall_x.sh
-# ./freebsd/snort/snort_x.sh
+cp ~/devopsScripts/freebsd/firewall/firewall.sh ./freebsd/firewall/firewall_x.sh
+cp ~devopsScripts/freebsd/snort/snort.sh ./freebsd/snort/snort_x.sh
+chmod +x ~/devopsScripts/freebsd/firewall/firewall_x.sh
+chmod +x ~/devopsScripts/freebsd/snort/snort_x.sh
+~/devopsScripts/freebsd/firewall/firewall_x.sh
+# ~/devopsScripts/freebsd/snort/snort_x.sh

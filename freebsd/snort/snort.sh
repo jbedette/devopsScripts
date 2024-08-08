@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "start snort.sh"
 
 # Install Snort & tcpreplay
 # echo "Installing Snort3 & tcpreplay..."
