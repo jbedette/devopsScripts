@@ -9,17 +9,19 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Set appropriate permissions
-chmod 644 ~/devopsScripts/firewall/pf.conf
+cp  ~/devopsScripts/freebsd/firewall/pf.conf  ~/devopsScripts/freebsd/firewall/pf_x.conf
+chmod 744 ~/devopsScripts/freebsd/firewall/pf_x.conf
 # Replace the existing /etc/pf.conf with the new file
-mv ~/devopsScripts/firewall/pf.conf /etc/pf.conf
+mv ~/devopsScripts/freebsd/firewall/pf_x.conf /etc/pf.conf
 
 echo "/etc/pf.conf updated"
 
 
 # Set appropriate permissions
-chmod 644 ~/devopsScripts/firewall/sshd_config
+cp  ~/devopsScripts/freebsd/firewall/sshd_config  ~/devopsScripts/freebsd/firewall/sshd_config_x
+chmod 744 ~/devopsScripts/freebsd/firewall/sshd_config_x
 # Replace the existing /etc/ssh/sshd_config with the new file
-mv ~/devopsScripts/firewall/sshd_config /etc/ssh/sshd_config
+mv ~/devopsScripts/freebsd/firewall/sshd_config_x /etc/ssh/sshd_config
 # Restart the SSH service to apply the changes
 service sshd restart
 
